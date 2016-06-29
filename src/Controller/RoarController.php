@@ -2,12 +2,18 @@
 
 namespace Drupal\dino_roar\Controller;
 
-
+use Drupal\Core\Controller\ControllerBase;
 use Symfony\Component\HttpFoundation\Response;
+use Drupal\dino_roar\Jurassic\RoarGenerator;
 
-class RoarController {
+class RoarController extends ControllerBase {
+
   public function roar($count) {
-    $roar = "R".str_repeat("O", $count)."AR!";
+    $roarGenerator = new RoarGenerator();
+
+    $roar = $roarGenerator->getRoar($count);
+
     return new Response($roar);
   }
+
 }
